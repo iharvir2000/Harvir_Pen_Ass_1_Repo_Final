@@ -1,0 +1,83 @@
+﻿@model  Harvir_Pen_Ass_1.Models.PenColorViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Pens" asp-action="Index">
+    <p>
+        <select asp-for="PenColor" asp-items="Model.Colors">
+            <option value="">All</option>
+        </select>
+
+        Brand: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].InkColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].IsBallpoint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pens[0].Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Pens) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InkColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBallpoint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
